@@ -127,10 +127,10 @@ namespace WoodcarverBossAddon
                     harmony.Patch(typeof(Opponent).GetMethod("SpawnOpponent"), prefix: new HarmonyMethod(typeof(ProspectorPatch).GetMethod("Pre")));
                     break;
                 case Boss.ANGLER:
-                    harmony.Patch(typeof(Opponent).GetMethod("SpawnOpponent"), postfix: new HarmonyMethod(typeof(AnglerPatch).GetMethod("Pre")));
+                    harmony.Patch(typeof(Opponent).GetMethod("SpawnOpponent"), prefix: new HarmonyMethod(typeof(AnglerPatch).GetMethod("Pre")));
                     break;
                 case Boss.TRAPPER:
-                    harmony.Patch(typeof(Opponent).GetMethod("SpawnOpponent"), postfix: new HarmonyMethod(typeof(TrapperPatch).GetMethod("Pre")));
+                    harmony.Patch(typeof(Opponent).GetMethod("SpawnOpponent"), prefix: new HarmonyMethod(typeof(TrapperPatch).GetMethod("Pre")));
                     break;
 
                 case Boss.OFF:
