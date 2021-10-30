@@ -62,6 +62,7 @@ namespace WoodcarverBossAddon
         }
         protected override void SetSceneEffectsShown(bool showEffects)
 		{
+
 			if (showEffects)
 			{
 				Color nearWhite = GameColors.Instance.nearWhite;
