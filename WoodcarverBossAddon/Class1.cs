@@ -88,7 +88,7 @@ namespace WoodcarverBossAddon
 
         private enum Boss
         {
-            PROSPECTOR, ANGLER, TRAPPER
+            PROSPECTOR, ANGLER, TRAPPER, OFF
         }
 
         private void Awake()
@@ -110,9 +110,12 @@ namespace WoodcarverBossAddon
                 case "trapper":
                     OverriddenBoss = Boss.TRAPPER;
                     break;
+                case "off":
+                    OverriddenBoss = Boss.OFF;
+                    break;
                 default:
-                    Log.LogError($"Incorrect Value specified - {overwrite.Value}, Defaulting to Prospector");
-                    OverriddenBoss = Boss.PROSPECTOR;
+                    Log.LogError($"Incorrect Value specified - {overwrite.Value}, Defaulting to Disabled");
+                    OverriddenBoss = Boss.OFF;
                     break;
             }
             Log.LogInfo($"Boss set to {OverriddenBoss}");
@@ -128,6 +131,10 @@ namespace WoodcarverBossAddon
                     break;
                 case Boss.TRAPPER:
                     harmony.Patch(typeof(Opponent).GetMethod("SpawnOpponent"), postfix: new HarmonyMethod(typeof(TrapperPatch).GetMethod("Pre")));
+                    break;
+
+                case Boss.OFF:
+                    Log.LogInfo("Patching skipped - No boss overridden");
                     break;
                 default:
                     break;
